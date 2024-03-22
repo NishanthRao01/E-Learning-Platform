@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyLearnNet</title>
+    <style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  overflow-x: hidden;
+  flex-direction: column;
+  align-items: center;
+  background-color: red;
+  animation: 10s ease-in-out 0s infinite rainbow;
+}
+
+@keyframes rainbow {
+  0% { background-color: hsl(0, 100%, 70%); }
+  12.5% { background-color: hsl(320, 100%, 70%); }
+  25% { background-color: hsl(286, 100%, 70%); }
+  37.5% { background-color: hsl(190, 100%, 70%); }
+  50% { background-color: hsl(161, 100%, 70%); }
+  62.5% { background-color: hsl(114, 100%, 70%); }
+  75% { background-color: hsl(68, 100%, 70%); }
+  87.5% { background-color: hsl(45, 100%, 70%); }
+  100% { background-color: hsl(0, 100%, 70%); }
+}
+
+header {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#logo {
+  width: 60px;
+  height: 60px;
+  margin-right: 20px;
+}
+
+#logo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+h1 {
+  margin: 10px 0;
+  font-size: 36px;
+  color: #333;
+}
+
+.course-box {
+  width: 48%;
+  margin: 2%;
+  padding: 30px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.285);
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.919);
+}
+
+.course-box:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.course-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.course-outline {
+  font-size: 18px;
+}
+
+@media screen and (max-width: 767px) {
+  .course-box {
+    width: 100%;
+  }
+}
+
+footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 20px;
+  color: black;
+  width: 100%;
+}
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="logo">
+            <img src="logo.jpg" alt="Logo">
+        </div>
+        <h1>MyLearnNet</h1>
+    </header>
+
+    <div class="course-box">
+        <div class="course-title">Course 1: Investment</div>
+        <div class="course-outline">
+            <p>1. <a href="content.html">Introduction</a></p>
+            <p>2. <a href="content2.html">Understanding the basics</a></p>
+            <p>3. <a href="content3.html">Conclusion</a></p>
+        </div>
+    </div>
+
+    <div class="course-box">
+        <div class="course-title">Course 2: Banking</div>
+        <div class="course-outline">
+            <p>1. <a href="a.html">Introduction to Banking</a></p>
+            <p>2. <a href="a1.html">Understanding the basics</a></p>
+            <p>3. <a href="a2.html">Conclusion</a></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 MyLearnNet. All rights reserved.</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+              <img src="instagram.jpeg" alt="Instagram Icon" width="30" height="30">
+          </a>
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
+              <img src="youtube.jpeg" alt="YouTube Icon" width="30" height="30">
+          </a>
+          <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
+              <img src="twitter.jpeg" alt="Twitter Icon" width="30" height="30">
+          </a>
+      </div>
+    </footer>
+</body>
+
+</html>

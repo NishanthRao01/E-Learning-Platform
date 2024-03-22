@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyLearnNet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px auto;
+            padding: 20px;
+            display: flex;
+            max-width: 1200px;
+            /* overflow: hidden; Prevent scrollbars caused by gradient */
+            background-color:red;
+            animation: 10s ease-in-out 0s infinite rainbow;
+        }
+
+        @keyframes rainbow{
+            0%    { background-color: hsl(0, 100%, 70%);}
+            12.5% { background-color: hsl(320, 100%, 70%);}
+            25%   { background-color: hsl(286, 100%, 70%);}
+            37.5% { background-color: hsl(190, 100%, 70%);}
+            50%   { background-color: hsl(161, 100%, 70%);}
+            62.5% { background-color: hsl(114, 100%, 70%);}
+            75%   { background-color: hsl(68, 100%, 70%);}
+            87.5% { background-color: hsl(45, 100%, 70%);}
+            100%  { background-color: hsl(0, 100%, 70%);}
+        }
+
+        #left-pane,
+        #content,
+        #right-pane {
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #left-pane,
+        #right-pane {
+            width: auto;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.919);
+            background-color: rgba(255, 255, 255, 0.285);
+        }
+        #course-contents-button, #checkbox-container {
+            width: 100%;
+            padding: 5%;
+            background-color: rgba(255, 255, 255, 0.285);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.919);
+        }
+        #profile-section {
+            display: flex;
+            transition: background-color 0.3s;
+            transition: box-shadow 0.3s;
+            color: #333;
+            border: solid #ffffff;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        #profile-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        #profile-name {
+            font-weight: bold;
+        }
+
+        #profile-section:hover #profile-options {
+            display: block;
+        }
+
+        #profile-options {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #f9f9f9;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        #profile-options a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        #profile-options a:hover {
+            background-color: #f3f3f3;
+        }
+
+        #related-links,
+        #notes {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 5px;  
+        }
+
+        #related-links ul {
+            list-style-type: none;
+            padding: 2px;
+        }
+
+        #related-links li {
+            margin-bottom: 10px;
+        }
+
+        #content {
+            flex: 2;
+            margin-left: 20px;
+        }
+
+        header {
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        #logo img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #333;
+
+        }
+
+        article {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        iframe {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 100%;
+        }
+        #profile-section:hover, #course-contents-button:hover, #checkbox-container:hover{
+            box-shadow: 0 0 20px rgb(255, 255, 255);
+            background-color: rgb(255, 255, 255);
+        }
+        #course-contents-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            width: 100%;
+            transition: background-color 0.3s;
+            transition: box-shadow 0.3s;
+            background: rgba(255, 255, 255, 0.285);
+            color: #333;
+            border: solid #ffffff;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #pagination {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        #right-pane {
+            width: 30%;
+            margin-left: 20px;
+        }
+
+        #right-pane textarea {
+            width: 100%;
+            border: solid #ffffff;
+            padding: 10px;
+            box-sizing: border-box;
+            resize: vertical;
+            margin-top: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        #checkbox-container {
+            background: rgba(255, 255, 255, 0.285);
+            color: #333;
+            transition: background-color 0.3s;
+            transition: box-shadow 0.3s;
+            border: solid #ffffff;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 767px) {
+            body {
+                flex-direction: column;
+            }
+
+            #left-pane,
+            #content,
+            #right-pane {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+
+        footer {
+            margin-top: auto; 
+            text-align: center  ;
+            padding: 10px;
+            color: #333;
+        }
+
+        .social-links {
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #333;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        p {
+            text-align: justify;
+
+            padding: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="left-pane">
+        <div id="profile-section">
+            <img src="C:\Users\mysel\Downloads\proj\proj\WhatsApp Image 2023-11-20 at 1.16.58 PM.jpeg" alt="Profile Image" id="profile-image">
+            <div id="profile-name">Demo</div>
+            <div id="profile-options">
+                <a href="#">Settings</a>
+                <a href="home.html">Logout</a>
+            </div>
+        </div>
+
+        <a href="MOC.html"><button id="course-contents-button">Course Contents</button></a>
+        <div id="related-links">
+            <h3>Related Links</h3>
+            <ul>
+                <li><a href="https://en.wikipedia.org/wiki/Banking_in_India">Wikipedia</a></li>
+                <li><a href="https://www.semrush.com/website/top/global/banking/">Top Websites For Banking</a></li>
+                <li><a href="https://www.youtube.com/watch?v=fTTGALaRZoc&pp=ygUfYmFua2luZyBpbnRyb2R1Y3Rpb24gaW4gZW5nbGlzaA%3D%3D">Learn More</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="content">
+
+        <header>
+  
+            <div id="logo">
+                <img src="logo.jpg" alt="Logo">
+            </div>
+            <h1>MyLearnNet</h1>
+        </header>
+
+        <article>
+            <h2 style="text-align: center;">Conclusion</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/leIiFgI79Ek?si=PnXhK3npFAJ9Mn4W" frameborder="0" allowfullscreen></iframe>
+            <p>In conclusion, banking stands as a cornerstone of modern economies, playing a pivotal role in fostering economic growth and financial stability. Through its core functions of accepting deposits, providing loans, and facilitating transactions, banks create a foundation for individuals and businesses to manage their finances effectively.
+
+                The banking sector's ability to mobilize savings and channel them into productive investments is crucial for economic development. By offering a diverse array of financial products and services, banks cater to the diverse needs of their customers, from basic savings accounts to sophisticated investment opportunities.
+                
+                Moreover, banks contribute to the stability of the financial system by providing a regulated and secure environment for the storage and exchange of money. Regulatory frameworks and oversight by central banks help maintain the integrity of the banking sector, instilling confidence among depositors and investors.
+                
+                In the era of technological advancements, banks continue to adapt, offering digital solutions that enhance accessibility and efficiency. This adaptability ensures that banking remains a relevant and indispensable part of the ever-evolving financial landscape.
+                
+                Ultimately, the positive impact of banking extends beyond individual transactions. It serves as a catalyst for economic activities, job creation, and overall prosperity. Despite challenges and periodic crises, the enduring resilience and adaptability of the banking sector underline its crucial role in sustaining and advancing the economic well-being of societies worldwide.</p>
+        </article>
+
+
+        <div id="pagination">
+            <div><a href="a1.html">Previous Page</a></div>
+            <div><a href="quiz.html">Take a Quiz</a></div>
+        </div>
+
+        <footer>
+            <p>&copy; 2023 MyLearnNet. All rights reserved.</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+              <img src="instagram.jpeg" alt="Instagram Icon" width="30" height="30">
+          </a>
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
+              <img src="youtube.jpeg" alt="YouTube Icon" width="30" height="30">
+          </a>
+          <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
+              <img src="twitter.jpeg" alt="Twitter Icon" width="30" height="30">
+          </a>
+      </div>
+        </footer>
+    </div>
+
+    <div id="right-pane">
+
+        <div id="checkbox-container">
+            <label for="learned-checkbox" style="font-size: 18px;">Completed:</label>
+            <input type="checkbox" id="learned-checkbox" name="learned-checkbox">
+        </div>
+
+        <h3 style="text-align: center;">Notes</h3>
+        <textarea rows="10" placeholder="Type your notes here..."></textarea>
+    </div>
+
+</body>
+
+</html>

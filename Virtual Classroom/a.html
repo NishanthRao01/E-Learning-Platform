@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyLearnNet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px auto;
+            padding: 20px;
+            display: flex;
+            max-width: 1200px;
+            background-color:red;
+            animation: 10s ease-in-out 0s infinite rainbow;
+        }
+
+        @keyframes rainbow{
+            0%    { background-color: hsl(0, 100%, 70%);}
+            12.5% { background-color: hsl(320, 100%, 70%);}
+            25%   { background-color: hsl(286, 100%, 70%);}
+            37.5% { background-color: hsl(190, 100%, 70%);}
+            50%   { background-color: hsl(161, 100%, 70%);}
+            62.5% { background-color: hsl(114, 100%, 70%);}
+            75%   { background-color: hsl(68, 100%, 70%);}
+            87.5% { background-color: hsl(45, 100%, 70%);}
+            100%  { background-color: hsl(0, 100%, 70%);}
+        }
+
+        #left-pane,
+        #content,
+        #right-pane {
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #left-pane,
+        #right-pane {
+            width: auto;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.919);
+            background-color: rgba(255, 255, 255, 0.285);
+        }
+        #course-contents-button, #checkbox-container {
+            width: 100%;
+            padding: 5%;
+            background-color: rgba(255, 255, 255, 0.285);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.919);
+        }
+        #profile-section {
+            display: flex;
+            transition: background-color 0.3s;
+            transition: box-shadow 0.3s;
+            color: #333;
+            border: solid #ffffff;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        #profile-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        #profile-name {
+            font-weight: bold;
+        }
+
+        #profile-section:hover #profile-options {
+            display: block;
+        }
+
+        #profile-options {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #f9f9f9;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        #profile-options a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        #profile-options a:hover {
+            background-color: #f3f3f3;
+        }
+
+        #related-links,
+        #notes {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 5px;  
+        }
+
+        #related-links ul {
+            list-style-type: none;
+            padding: 2px;
+        }
+
+        #related-links li {
+            margin-bottom: 10px;
+        }
+
+        #content {
+            flex: 2;
+            margin-left: 20px;
+        }
+
+        header {
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        #logo img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #333;
+
+        }
+
+        article {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        iframe {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 100%;
+        }
+        #profile-section:hover, #course-contents-button:hover, #checkbox-container:hover{
+            box-shadow: 0 0 20px rgb(255, 255, 255);
+            background-color: rgb(255, 255, 255);
+        }
+        #course-contents-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            width: 100%;
+            transition: background-color 0.3s;
+            transition: box-shadow 0.3s;
+            background: rgba(255, 255, 255, 0.285);
+            color: #333;
+            border: solid #ffffff;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #pagination {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        #right-pane {
+            width: 30%;
+            margin-left: 20px;
+        }
+
+        #right-pane textarea {
+            width: 100%;
+            border: solid #ffffff;
+            padding: 10px;
+            box-sizing: border-box;
+            resize: vertical;
+            margin-top: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        #checkbox-container {
+            background: rgba(255, 255, 255, 0.285);
+            color: #333;
+            transition: background-color 0.3s;
+            transition: box-shadow 0.3s;
+            border: solid #ffffff;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 767px) {
+            body {
+                flex-direction: column;
+            }
+
+            #left-pane,
+            #content,
+            #right-pane {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+
+        footer {
+            margin-top: auto; 
+            text-align: center  ;
+            padding: 10px;
+            color: #333;
+        }
+
+        .social-links {
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #333;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        p {
+            text-align: justify;
+
+            padding: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="left-pane">
+        <div id="profile-section">
+            <img src="C:\Users\mysel\Downloads\proj\proj\WhatsApp Image 2023-11-20 at 1.16.58 PM.jpeg" alt="Profile Image" id="profile-image">
+            <div id="profile-name">Demo</div>
+            <div id="profile-options">
+                <a href="#">Settings</a>
+                <a href="home.html">Logout</a>
+            </div>
+        </div>
+
+        <a href="MOC.html"><button id="course-contents-button">Course Contents</button></a>
+        <div id="related-links">
+            <h3>Related Links</h3>
+            <ul>
+                <li><a href="https://en.wikipedia.org/wiki/Banking_in_India">Wikipedia</a></li>
+                <li><a href="https://www.semrush.com/website/top/global/banking/">Top Websites For Banking</a></li>
+                <li><a href="https://www.youtube.com/watch?v=fTTGALaRZoc&pp=ygUfYmFua2luZyBpbnRyb2R1Y3Rpb24gaW4gZW5nbGlzaA%3D%3D">Learn More</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="content">
+
+        <header>
+  
+            <div id="logo">
+                <img src="logo.jpg" alt="Logo">
+            </div>
+            <h1>MyLearnNet</h1>
+        </header>
+
+        <article>
+            <h2 style="text-align: center;">Banking</h2>
+
+       
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/mzoX7zEZ6h4?si=BUx8y5SZCz8KsAjy" frameborder="0" allowfullscreen></iframe>
+            <p>Banking is a complex system integral to the functioning of economies worldwide. At its core, a bank is a financial institution that acts as an intermediary between those with surplus funds, seeking a secure place to store or invest their money, and those in need of funds for various purposes, such as businesses or individuals looking to make investments, purchase homes, or meet other financial needs.
+
+                One of the fundamental functions of banks is to accept deposits. Through savings and checking accounts, individuals and businesses can deposit their money with banks, providing a secure place for storage. Banks, in turn, use a portion of these deposits to extend loans and generate interest income.
+                
+                Lending is another critical aspect of banking. Banks provide loans to individuals and businesses for various purposes, including home mortgages, car loans, and business expansion. The interest charged on these loans contributes significantly to a bank's revenue. 
+                
+                The process of creating money through fractional reserve banking is noteworthy. Banks are required to keep only a fraction of their deposits as reserves, allowing them to lend out the majority of the funds. This practice increases the money supply in the economy but also poses risks, as it can lead to issues like bank runs if depositors lose confidence.</p>
+        </article>
+
+        <div id="pagination">
+       
+            <div><a href="a1.html">Next Page</a></div>
+        </div>
+
+        <footer>
+            <p>&copy; 2023 Investment. All rights reserved.</p>
+            <div class="social-links">
+
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+                    <img src="C:\Users\mysel\OneDrive\Desktop\proj\WhatsApp Image 2023-11-20 at 1.16.59 PM.jpeg" alt="Instagram Icon" width="30" height="30">
+                </a>
+    
+                <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
+                    <img src="C:\Users\mysel\OneDrive\Desktop\proj\WhatsApp Image 2023-11-20 at 1.16.59 PM (1).jpeg" alt="YouTube Icon" width="30" height="30">
+                </a>
+    
+                <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
+                    <img src="C:\Users\mysel\OneDrive\Desktop\proj\WhatsApp Image 2023-11-20 at 1.16.58 PM (1).jpeg" alt="Twitter Icon" width="30" height="30">
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <div id="right-pane">
+
+        <div id="checkbox-container">
+            <label for="learned-checkbox" style="font-size: 18px;">Completed:</label>
+            <input type="checkbox" id="learned-checkbox" name="learned-checkbox">
+        </div>
+
+        <h3 style="text-align: center;">Notes</h3>
+        <textarea rows="10" placeholder="Type your notes here..."></textarea>
+    </div>
+
+</body>
+
+</html>
